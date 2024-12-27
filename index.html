@@ -47,6 +47,17 @@
         .content h2 {
             color: black;
         }
+        .banner-container {
+            max-width: 100%;
+            margin: 20px auto;
+            text-align: center;
+        }
+        .banner-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+        }
         footer {
             background-color: #007BFF;
             color: white;
@@ -113,6 +124,20 @@
             }
         }
     </style>
+    <script>
+        let bannerIndex = 0;
+        const banners = ["/banner/banner.gif", "/banner/banner1.gif", "/banner/banner2.gif"];
+
+        function rotateBanner() {
+            const bannerElement = document.getElementById('banner');
+            bannerIndex = (bannerIndex + 1) % banners.length;
+            bannerElement.src = banners[bannerIndex];
+        }
+
+        window.onload = function() {
+            setInterval(rotateBanner, 3000); // Troca a cada 3 segundos
+        };
+    </script>
 </head>
 <body>
 
@@ -120,6 +145,9 @@
        <img src="welcome.gif" alt="Baby Sherk Token">
      <h1>Welcome to teh Baby Sherk Token!</h1>
     <p>Powered by <a href="https://sherkfun.io" style="color: blue; text-decoration: underline;">Sherkfun</a></p>
+        <div class="banner-container">
+        <img id="banner" src="/banner/banner.gif" alt="Banner Rotativo">
+    </div>
     <h2>Your Gateway to the Future of Crypto</h2>
     <a href="https://t.me/+Fge8reM0a6Q0MGYx" class="button">Join Telegram</a>
     <a href="https://x.com/tehtoken4fun" class="button">Join Tweeter</a>
