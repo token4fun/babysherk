@@ -162,7 +162,10 @@
         const indicatorContainer = document.getElementById('indicators');
 
         function updateBanner() {
+            // Atualiza a posição dos banners
             bannerSlide.style.transform = `translateX(-${bannerIndex * 100}%)`;
+
+            // Atualiza os indicadores
             const indicators = document.querySelectorAll('.indicator');
             indicators.forEach((indicator, index) => {
                 if (index === bannerIndex) {
@@ -189,6 +192,7 @@
             createIndicators();
             updateBanner();
 
+            // Troca automática de banners
             setInterval(() => {
                 bannerIndex = (bannerIndex + 1) % banners.length;
                 updateBanner();
@@ -204,6 +208,7 @@
     <p>Powered by <a href="https://sherkfun.io" style="color: blue; text-decoration: underline;">Sherkfun</a></p>
     <div class="banner-container">
         <div id="banner-slide" class="banner-slide">
+            <!-- Banners agora são visíveis um por vez -->
             <a href="https://sherk.io/" target="_blank">
                 <img src="https://token4fun.github.io/babysherk/banner.gif" alt="Banner 1">
             </a>
