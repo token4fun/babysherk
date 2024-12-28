@@ -48,13 +48,15 @@
             color: black;
         }
         .banner-container {
-            max-width: 1024px;
+            max-width: 100%;
             margin: 20px auto;
             text-align: center;
         }
         .banner-container a img {
-            width: 1024px;
-            height: 270px; /* Define a altura fixa para o banner */
+            width: 100%;
+            max-width: 1024px; /* Garantir que o banner nunca ultrapasse 1024px */
+            height: auto; /* Manter a proporção de altura ajustada automaticamente */
+            aspect-ratio: 1024 / 270; /* Garantir a proporção de 1024x270 */
             object-fit: cover;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
