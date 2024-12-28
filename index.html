@@ -66,6 +66,11 @@
             aspect-ratio: 1024 / 270;
             object-fit: cover;
             border-radius: 10px;
+            display: none; /* Inicialmente todos os banners estão ocultos */
+        }
+
+        .banner-slide img.active {
+            display: block; /* Exibe apenas o banner ativo */
         }
 
         .indicator-container {
@@ -160,10 +165,14 @@
 
         const bannerSlide = document.getElementById('banner-slide');
         const indicatorContainer = document.getElementById('indicators');
+        const bannerImages = document.querySelectorAll('.banner-slide img');
 
         function updateBanner() {
-            // Atualiza a posição dos banners
-            bannerSlide.style.transform = `translateX(-${bannerIndex * 100}%)`;
+            // Oculta todos os banners
+            bannerImages.forEach(image => image.classList.remove('active'));
+
+            // Exibe o banner ativo
+            bannerImages[bannerIndex].classList.add('active');
 
             // Atualiza os indicadores
             const indicators = document.querySelectorAll('.indicator');
@@ -210,7 +219,7 @@
         <div id="banner-slide" class="banner-slide">
             <!-- Banners agora são visíveis um por vez -->
             <a href="https://sherk.io/" target="_blank">
-                <img src="https://token4fun.github.io/babysherk/banner.gif" alt="Banner 1">
+                <img class="active" src="https://token4fun.github.io/babysherk/banner.gif" alt="Banner 1">
             </a>
             <a href="https://sherkfun.io/" target="_blank">
                 <img src="https://token4fun.github.io/babysherk/banner1.gif" alt="Banner 2">
@@ -224,7 +233,7 @@
     <h2>Your Gateway to the Future of Crypto</h2>
     <a href="https://t.me/+Fge8reM0a6Q0MGYx" class="button">Join Telegram</a>
     <a href="https://x.com/tehtoken4fun" class="button">Join Tweeter</a>
-    <p>teh Baby Sherk is the latest meme-inspired token created exclusively on the <a href="https://sherkfun.io" style="color: black; text-decoration: underline;">Sherkfun</a> platform...</p>
+    <p>teh Baby Sherk is the latest meme-inspired token created exclusively on the <a href="https://sherkfun.io" style="color: black; text-decoration: underline;">Sherkfun</a> platform. With cutting-edge blockchain technology and a fun, community-driven ecosystem, teh Baby Sherk is here to revolutionize the crypto space.</p>
 </div>
   <div class="content">
     <h3>Get Involved Now!</h3>
