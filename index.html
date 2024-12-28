@@ -47,52 +47,21 @@
         .content h2 {
             color: black;
         }
-
         .banner-container {
-            position: relative;
             max-width: 100%;
             margin: 20px auto;
-            overflow: hidden;
+            text-align: center;
         }
-
-        .banner-slide {
-            display: flex;
-            transition: transform 1s ease-in-out;
-        }
-
-        .banner-slide img {
+        .banner-container a img {
             width: 100%;
-            height: auto;
-            aspect-ratio: 1024 / 270;
+            max-width: 1024px; /* Garantir que o banner nunca ultrapasse 1024px */
+            height: auto; /* Manter a proporção de altura ajustada automaticamente */
+            aspect-ratio: 1024 / 270; /* Garantir a proporção de 1024x270 */
             object-fit: cover;
             border-radius: 10px;
-            display: none; /* Inicialmente todos os banners estão ocultos */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+            transition: opacity 0.9s ease; /* Adiciona uma transição suave */
         }
-
-        .banner-slide img.active {
-            display: block; /* Exibe apenas o banner ativo */
-        }
-
-        .indicator-container {
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        .indicator {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            margin: 0 5px;
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .indicator.active {
-            background-color: #007BFF;
-        }
-
         footer {
             background-color: #007BFF;
             color: white;
@@ -135,20 +104,24 @@
         /* Media Query para telas menores que 768px */
         @media (max-width: 768px) {
             body {
-                background-size: auto;
+                background-size: auto;  /* Ajusta o tamanho do background */
             }
+
             .content {
                 max-width: 100%;
                 margin: 10px;
                 padding: 15px;
             }
+
             header h1 {
                 font-size: 24px;
             }
+
             .button {
                 font-size: 14px;
                 padding: 8px 16px;
             }
+
             .button-highlight {
                 font-size: 16px;
                 padding: 12px 25px;
@@ -158,83 +131,46 @@
     <script>
         let bannerIndex = 0;
         const banners = [
+            // adicione quantos banner quiser incluindo o numero na frente
             {src: "https://token4fun.github.io/babysherk/banner.gif", link: "https://sherk.io/"},
-            {src: "https://token4fun.github.io/babysherk/banner1.gif", link: "https://sherkfun.io/"},
-            {src: "https://token4fun.github.io/babysherk/banner2.gif", link: "https://sherkfun.io/token/7LrFusFsbzpC6yus7qGCBbDdZaJBQWMJqiEM16VSGfun"}
-        ];
+            {src: "https://token4fun.github.io/babysherk//banner1.gif", link: "https://sherkfun.io/"},
+            {src: "https://token4fun.github.io/babysherk//banner2.gif", link: "https://sherkfun.io/token/7LrFusFsbzpC6yus7qGCBbDdZaJBQWMJqiEM16VSGfun"},
+                    ];
 
-        const bannerSlide = document.getElementById('banner-slide');
-        const indicatorContainer = document.getElementById('indicators');
-        const bannerImages = document.querySelectorAll('.banner-slide img');
+        function rotateBanner() {
+            const bannerElement = document.getElementById('banner');
+            const bannerLink = document.getElementById('banner-link');
+            bannerElement.style.opacity = '0';  // Torna o banner invisível temporariamente
 
-        function updateBanner() {
-            // Oculta todos os banners
-            bannerImages.forEach(image => image.classList.remove('active'));
-
-            // Exibe o banner ativo
-            bannerImages[bannerIndex].classList.add('active');
-
-            // Atualiza os indicadores
-            const indicators = document.querySelectorAll('.indicator');
-            indicators.forEach((indicator, index) => {
-                if (index === bannerIndex) {
-                    indicator.classList.add('active');
-                } else {
-                    indicator.classList.remove('active');
-                }
-            });
-        }
-
-        function createIndicators() {
-            banners.forEach((banner, index) => {
-                const indicator = document.createElement('span');
-                indicator.classList.add('indicator');
-                indicator.addEventListener('click', () => {
-                    bannerIndex = index;
-                    updateBanner();
-                });
-                indicatorContainer.appendChild(indicator);
-            });
+            setTimeout(() => {
+                bannerIndex = (bannerIndex + 1) % banners.length;
+                bannerElement.src = banners[bannerIndex].src;
+                bannerLink.href = banners[bannerIndex].link;
+                bannerElement.style.opacity = '1';  // Torna o banner visível novamente
+            }, 500);  // Atraso de 0,5s para combinar com a transição
         }
 
         window.onload = function() {
-            createIndicators();
-            updateBanner();
-
-            // Troca automática de banners
-            setInterval(() => {
-                bannerIndex = (bannerIndex + 1) % banners.length;
-                updateBanner();
-            }, 6000); // Troca a cada 6 segundos
+            setInterval(rotateBanner, 6000); // Troca a cada 3 segundos
         };
     </script>
 </head>
 <body>
 
 <div class="content">
-    <img src="welcome.gif" alt="Baby Sherk Token">
-    <h1>Welcome to teh Baby Sherk Token!</h1>
+       <img src="welcome.gif" alt="Baby Sherk Token">
+     <h1>Welcome to teh Baby Sherk Token!</h1>
     <p>Powered by <a href="https://sherkfun.io" style="color: blue; text-decoration: underline;">Sherkfun</a></p>
     <div class="banner-container">
-        <div id="banner-slide" class="banner-slide">
-            <!-- Banners agora são visíveis um por vez -->
-            <a href="https://sherk.io/" target="_blank">
-                <img class="active" src="https://token4fun.github.io/babysherk/banner.gif" alt="Banner 1">
-            </a>
-            <a href="https://sherkfun.io/" target="_blank">
-                <img src="https://token4fun.github.io/babysherk/banner1.gif" alt="Banner 2">
-            </a>
-            <a href="https://sherkfun.io/token/7LrFusFsbzpC6yus7qGCBbDdZaJBQWMJqiEM16VSGfun" target="_blank">
-                <img src="https://token4fun.github.io/babysherk/banner2.gif" alt="Banner 3">
-            </a>
-        </div>
+        <a id="banner-link" href="https://sherk.io/">
+            <img id="banner" src="https://token4fun.github.io/babysherk/banner.gif" alt="Banner Rotativo">
+        </a>
     </div>
-    <div class="indicator-container" id="indicators"></div>
     <h2>Your Gateway to the Future of Crypto</h2>
     <a href="https://t.me/+Fge8reM0a6Q0MGYx" class="button">Join Telegram</a>
     <a href="https://x.com/tehtoken4fun" class="button">Join Tweeter</a>
     <p>teh Baby Sherk is the latest meme-inspired token created exclusively on the <a href="https://sherkfun.io" style="color: black; text-decoration: underline;">Sherkfun</a> platform. With cutting-edge blockchain technology and a fun, community-driven ecosystem, teh Baby Sherk is here to revolutionize the crypto space.</p>
-</div>
+
   <div class="content">
     <h3>Get Involved Now!</h3>
     <p>Be an early adopter and enjoy exclusive rewards. Don’t miss your chance to be part of teh Baby Sherk revolution!</p>
