@@ -65,12 +65,9 @@
         }
         /* Navegação de Banner */
         .banner-nav {
-            position: absolute;
-            top: 50%;
-            width: 100%;
             display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
+            justify-content: center;
+            margin-top: 10px; /* Espaço entre o banner e as setas */
         }
 
         .banner-nav button {
@@ -82,6 +79,7 @@
             cursor: pointer;
             border-radius: 50%;
             transition: background-color 0.3s ease;
+            margin: 0 10px;
         }
 
         .banner-nav button:hover {
@@ -91,6 +89,7 @@
         .banner-nav button:focus {
             outline: none;
         }
+
         footer {
             background-color: #007BFF;
             color: white;
@@ -161,8 +160,8 @@
         let bannerIndex = 0;
         const banners = [
             {src: "https://token4fun.github.io/babysherk/banner.gif", link: "https://sherk.io/"},
-            {src: "https://token4fun.github.io/babysherk/banner1.gif", link: "https://sherkfun.io/"},
-            {src: "https://token4fun.github.io/babysherk/banner2.gif", link: "https://sherkfun.io/token/7LrFusFsbzpC6yus7qGCBbDdZaJBQWMJqiEM16VSGfun"},
+            {src: "https://token4fun.github.io/babysherk//banner1.gif", link: "https://sherkfun.io/"},
+            {src: "https://token4fun.github.io/babysherk//banner2.gif", link: "https://sherkfun.io/token/7LrFusFsbzpC6yus7qGCBbDdZaJBQWMJqiEM16VSGfun"},
         ];
 
         function rotateBanner() {
@@ -212,14 +211,14 @@
 <body>
 
 <div class="content">
-    <img src="welcome.gif" alt="Baby Sherk Token">
-    <h1>Welcome to teh Baby Sherk Token!</h1>
+       <img src="welcome.gif" alt="Baby Sherk Token">
+     <h1>Welcome to teh Baby Sherk Token!</h1>
     <p>Powered by <a href="https://sherkfun.io" style="color: blue; text-decoration: underline;">Sherkfun</a></p>
     <div class="banner-container">
         <a id="banner-link" href="https://sherk.io/">
             <img id="banner" src="https://token4fun.github.io/babysherk/banner.gif" alt="Banner Rotativo">
         </a>
-        <!-- Setas de navegação -->
+        <!-- Setas de navegação abaixo do banner -->
         <div class="banner-nav">
             <button class="prev" onclick="prevBanner()">&#10094;</button>
             <button class="next" onclick="nextBanner()">&#10095;</button>
@@ -230,27 +229,27 @@
     <a href="https://x.com/tehtoken4fun" class="button">Join Tweeter</a>
     <p>teh Baby Sherk is the latest meme-inspired token created exclusively on the <a href="https://sherkfun.io" style="color: black; text-decoration: underline;">Sherkfun</a> platform. With cutting-edge blockchain technology and a fun, community-driven ecosystem, teh Baby Sherk is here to revolutionize the crypto space.</p>
 
+  <div class="content">
+    <h3>Get Involved Now!</h3>
+    <p>Be an early adopter and enjoy exclusive rewards. Don’t miss your chance to be part of teh Baby Sherk revolution!</p>
+    <a href="https://sherkfun.io/token/7LrFusFsbzpC6yus7qGCBbDdZaJBQWMJqiEM16VSGfun" class="button-highlight">Buy teh Baby Sherk Now</a>
+    <a href="https://sherkfun.io/token/7LrFusFsbzpC6yus7qGCBbDdZaJBQWMJqiEM16VSGfun" class="button">Chart on Sherk.fun</a>
+    <a href="#" class="button">Chart on Radium</a>
+</div>
+    
     <div class="content">
-        <h3>Get Involved Now!</h3>
-        <p>Be an early adopter and enjoy exclusive rewards. Don’t miss your chance to be part of teh Baby Sherk revolution!</p>
-        <a href="https://sherkfun.io/token/7LrFusFsbzpC6yus7qGCBbDdZaJBQWMJqiEM16VSGfun" class="button-highlight">Buy teh Baby Sherk Now</a>
-        <a href="https://sherkfun.io/token/7LrFusFsbzpC6yus7qGCBbDdZaJBQWMJqiEM16VSGfun" class="button">Chart on Sherk.fun</a>
-        <a href="#" class="button">Chart on Radium</a>
-    </div>
-
-    <div class="content">
-        <h3>Tokenomics</h3>
-        <ul style="text-align: left; margin-left: auto; margin-right: auto; display: inline-block;">
-            <li><strong>Name:</strong> teh Baby Sherk</li>
-            <li><strong>Symbol:</strong> $TBSherk</li>
-            <li><strong>Network:</strong> Solana</li>
-            <li><strong>Supply:</strong> 1,000,000,000</li>
-            <li><strong>Minting:</strong> Revoked</li>
-            <li><strong>Ownership:</strong> Revoked</li>
-            <li><strong>Team Allocation:</strong> 1.24% in $TBSherk</li>
-            <li><strong>Tax:</strong> 0%</li>
-            <li><strong>Freeze Authority:</strong> Revoked</li>
-        </ul>
+    <h3>Tokenomics</h3>
+    <ul style="text-align: left; margin-left: auto; margin-right: auto; display: inline-block;">
+        <li><strong>Name:</strong> teh Baby Sherk</li>
+        <li><strong>Symbol:</strong> $TBSherk</li>
+        <li><strong>Network:</strong> Solana</li>
+        <li><strong>Supply:</strong> 1,000,000,000</li>
+        <li><strong>Minting:</strong> Revoked</li>
+        <li><strong>Ownership:</strong> Revoked</li>
+        <li><strong>Team Allocation:</strong> 1.24% in $TBSherk</li>
+        <li><strong>Tax:</strong> 0%</li>
+        <li><strong>Freeze Authority:</strong> Revoked</li>
+    </ul>
     </div>
 
     <div class="content">
