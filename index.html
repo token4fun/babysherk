@@ -54,11 +54,11 @@
         }
         .banner-container a img {
             width: 100%;
-            height: auto;
-            aspect-ratio: 16 / 9;
+            height: 200px; /* Defina uma altura fixa para evitar mudanças inesperadas no layout */
+            object-fit: cover;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-            object-fit: cover;
+            transition: opacity 0.5s ease; /* Adiciona uma transição suave */
         }
         footer {
             background-color: #007BFF;
@@ -137,9 +137,14 @@
         function rotateBanner() {
             const bannerElement = document.getElementById('banner');
             const bannerLink = document.getElementById('banner-link');
-            bannerIndex = (bannerIndex + 1) % banners.length;
-            bannerElement.src = banners[bannerIndex].src;
-            bannerLink.href = banners[bannerIndex].link;
+            bannerElement.style.opacity = '0';  // Torna o banner invisível temporariamente
+
+            setTimeout(() => {
+                bannerIndex = (bannerIndex + 1) % banners.length;
+                bannerElement.src = banners[bannerIndex].src;
+                bannerLink.href = banners[bannerIndex].link;
+                bannerElement.style.opacity = '1';  // Torna o banner visível novamente
+            }, 500);  // Atraso de 0,5s para combinar com a transição
         }
 
         window.onload = function() {
