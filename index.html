@@ -48,19 +48,48 @@
             color: black;
         }
         .banner-container {
+            position: relative;
             max-width: 100%;
             margin: 20px auto;
             text-align: center;
         }
         .banner-container a img {
             width: 100%;
-            max-width: 1024px; /* Garantir que o banner nunca ultrapasse 1024px */
-            height: auto; /* Manter a proporção de altura ajustada automaticamente */
-            aspect-ratio: 1024 / 270; /* Garantir a proporção de 1024x270 */
+            max-width: 1024px;
+            height: auto;
+            aspect-ratio: 1024 / 270;
             object-fit: cover;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-            transition: opacity 0.9s ease; /* Adiciona uma transição suave */
+            transition: opacity 0.9s ease;
+        }
+        /* Navegação de Banner */
+        .banner-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .banner-nav button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+        }
+
+        .banner-nav button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .banner-nav button:focus {
+            outline: none;
         }
         footer {
             background-color: #007BFF;
@@ -131,11 +160,10 @@
     <script>
         let bannerIndex = 0;
         const banners = [
-            // adicione quantos banner quiser incluindo o numero na frente
             {src: "https://token4fun.github.io/babysherk/banner.gif", link: "https://sherk.io/"},
             {src: "https://token4fun.github.io/babysherk//banner1.gif", link: "https://sherkfun.io/"},
             {src: "https://token4fun.github.io/babysherk//banner2.gif", link: "https://sherkfun.io/token/7LrFusFsbzpC6yus7qGCBbDdZaJBQWMJqiEM16VSGfun"},
-                    ];
+        ];
 
         function rotateBanner() {
             const bannerElement = document.getElementById('banner');
@@ -150,8 +178,34 @@
             }, 500);  // Atraso de 0,5s para combinar com a transição
         }
 
+        function nextBanner() {
+            bannerIndex = (bannerIndex + 1) % banners.length;
+            const bannerElement = document.getElementById('banner');
+            const bannerLink = document.getElementById('banner-link');
+            bannerElement.style.opacity = '0';
+
+            setTimeout(() => {
+                bannerElement.src = banners[bannerIndex].src;
+                bannerLink.href = banners[bannerIndex].link;
+                bannerElement.style.opacity = '1';
+            }, 500);
+        }
+
+        function prevBanner() {
+            bannerIndex = (bannerIndex - 1 + banners.length) % banners.length;
+            const bannerElement = document.getElementById('banner');
+            const bannerLink = document.getElementById('banner-link');
+            bannerElement.style.opacity = '0';
+
+            setTimeout(() => {
+                bannerElement.src = banners[bannerIndex].src;
+                bannerLink.href = banners[bannerIndex].link;
+                bannerElement.style.opacity = '1';
+            }, 500);
+        }
+
         window.onload = function() {
-            setInterval(rotateBanner, 6000); // Troca a cada 3 segundos
+            setInterval(rotateBanner, 6000); // Troca a cada 6 segundos
         };
     </script>
 </head>
@@ -165,6 +219,11 @@
         <a id="banner-link" href="https://sherk.io/">
             <img id="banner" src="https://token4fun.github.io/babysherk/banner.gif" alt="Banner Rotativo">
         </a>
+        <!-- Setas de navegação -->
+        <div class="banner-nav">
+            <button class="prev" onclick="prevBanner()">&#10094;</button>
+            <button class="next" onclick="nextBanner()">&#10095;</button>
+        </div>
     </div>
     <h2>Your Gateway to the Future of Crypto</h2>
     <a href="https://t.me/+Fge8reM0a6Q0MGYx" class="button">Join Telegram</a>
